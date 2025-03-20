@@ -1,0 +1,32 @@
+{
+    "server_paths": {
+        "iouring": [
+            "/home/cocoa/tcpchatserver/build/chat_server",
+            "/usr/local/bin/tcpchatserver"
+        ],
+        "epoll": [
+            "/home/cocoa/epollechoserver/build/epoll_server",
+            "/usr/local/bin/epoll_server"
+        ]
+    },
+    "default_server_type": "iouring",
+    "benchmark_tool_path": "cargo run --release --bin bench --",
+    "results_dir": "benchmark_results",
+    "default_connections": [
+        10,
+        50,
+        100,
+        500,
+        1000,
+        2000
+    ],
+    "default_threads": [
+        1,
+        2,
+        4,
+        8,
+        16
+    ],
+    "default_duration": 30,
+    "default_server_address": "127.0.0.1:8080"
+}

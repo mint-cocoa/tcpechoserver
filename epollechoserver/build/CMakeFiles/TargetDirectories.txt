@@ -1,0 +1,14 @@
+/home/cocoa/epollechoserver/build/CMakeFiles/epoll_server.dir
+/home/cocoa/epollechoserver/build/CMakeFiles/edit_cache.dir
+/home/cocoa/epollechoserver/build/CMakeFiles/rebuild_cache.dir
+/home/cocoa/epollechoserver/build/CMakeFiles/list_install_components.dir
+/home/cocoa/epollechoserver/build/CMakeFiles/install.dir
+/home/cocoa/epollechoserver/build/CMakeFiles/install/local.dir
+/home/cocoa/epollechoserver/build/CMakeFiles/install/strip.dir
+/home/cocoa/epollechoserver/build/client/CMakeFiles/chat_client.dir
+/home/cocoa/epollechoserver/build/client/CMakeFiles/edit_cache.dir
+/home/cocoa/epollechoserver/build/client/CMakeFiles/rebuild_cache.dir
+/home/cocoa/epollechoserver/build/client/CMakeFiles/list_install_components.dir
+/home/cocoa/epollechoserver/build/client/CMakeFiles/install.dir
+/home/cocoa/epollechoserver/build/client/CMakeFiles/install/local.dir
+/home/cocoa/epollechoserver/build/client/CMakeFiles/install/strip.dir

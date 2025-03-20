@@ -1,0 +1,7 @@
+Benchmarking: 127.0.0.1:8080
+10 clients, running 1024 bytes, 15 sec.
+
+Speed: 109755 request/sec, 109695 response/sec
+Requests: 1646337
+Responses: 1645433
+Success rate: 99.95%

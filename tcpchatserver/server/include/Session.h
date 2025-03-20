@@ -19,7 +19,7 @@ class ChatMessage;
  */
 class Session {
 public:
-    static constexpr unsigned CQE_BATCH_SIZE = 256;  // 한 번에 처리할 최대 이벤트 수
+    static constexpr unsigned CQE_BATCH_SIZE = 512;  // 한 번에 처리할 최대 이벤트 수
     
     explicit Session(int32_t id);
     ~Session();

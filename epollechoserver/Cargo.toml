@@ -1,0 +1,16 @@
+[package]
+name = "tcp-chat-bench"
+version = "0.1.0"
+edition = "2021"
+authors = ["TCP Chat User"]
+description = "TCP 채팅 서버 벤치마킹 도구"
+
+[dependencies]
+byteorder = "1.4.3"
+getopts = "0.2.21"
+log = "0.4"
+env_logger = "0.10"
+
+[[bin]]
+name = "bench"
+path = "bench.rs" 

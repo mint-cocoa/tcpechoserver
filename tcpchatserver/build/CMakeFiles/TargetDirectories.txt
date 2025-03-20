@@ -1,0 +1,4 @@
+/home/cocoa/echo_server/tcpchatserver/build/CMakeFiles/chat_server.dir
+/home/cocoa/echo_server/tcpchatserver/build/CMakeFiles/chat_client.dir
+/home/cocoa/echo_server/tcpchatserver/build/CMakeFiles/edit_cache.dir
+/home/cocoa/echo_server/tcpchatserver/build/CMakeFiles/rebuild_cache.dir

@@ -1,0 +1,1 @@
+/usr/bin/c++  -fsanitize=address -fno-omit-frame-pointer -g -O1 -Wall -Wextra  -fsanitize=address CMakeFiles/chat_client.dir/client/main.cpp.o CMakeFiles/chat_client.dir/client/src/ChatClient.cpp.o -o chat_client  -lpthread 
