@@ -19,8 +19,8 @@ void signal_handler(int signal) {
 }
 
 int main(int argc, char* argv[]) {
-    if (argc != 3) {
-        LOG_ERROR("Usage: ", argv[0], " <host> <port>");
+    if (argc < 3 || argc > 4) {
+        LOG_ERROR("Usage: ", argv[0], " <host> <port> [num_threads]");
         return 1;
     }
 
@@ -54,24 +54,17 @@ int main(int argc, char* argv[]) {
         LOG_INFO("Starting server on ", host, ":", port);
         LOG_INFO("Hardware concurrency: ", std::thread::hardware_concurrency(), " cores");
 
-        // 환경 변수에서 쓰레드 수 가져오기
+        // 쓰레드 수 인수 처리 (선택적)
         unsigned int thread_count = std::thread::hardware_concurrency(); // 기본값은 CPU 코어 수
-        const char* thread_env = std::getenv("SERVER_THREAD_COUNT");
-        if (thread_env) {
-            try {
-                int env_thread_count = std::stoi(thread_env);
-                if (env_thread_count > 0) {
-                    thread_count = static_cast<unsigned int>(env_thread_count);
-                    LOG_INFO("Using thread count from environment: ", thread_count);
-                } else {
-                    LOG_WARN("Invalid thread count in environment (", env_thread_count, "), using default: ", thread_count);
-                }
-            } catch (const std::exception& e) {
-                LOG_WARN("Failed to parse SERVER_THREAD_COUNT environment variable: ", e.what());
-                LOG_WARN("Using default thread count: ", thread_count);
+        if (argc == 4) {
+            thread_count = static_cast<unsigned int>(std::stoi(argv[3]));
+            if (thread_count == 0) {
+                LOG_ERROR("Number of threads must be greater than 0");
+                return 1;
             }
+            LOG_INFO("Using specified thread count: ", thread_count);
         } else {
-            LOG_INFO("SERVER_THREAD_COUNT not set, using default: ", thread_count);
+            LOG_INFO("Using hardware concurrency: ", thread_count, " threads");
         }
 
         // 세션 매니저 초기화

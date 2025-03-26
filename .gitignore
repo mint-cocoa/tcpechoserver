@@ -1,0 +1,58 @@
+# 컴파일된 바이너리와 오브젝트 파일
+*.o
+*.obj
+*.exe
+*.out
+*.a
+*.so
+*.dylib
+*.dll
+*.lib
+
+# CMake 빌드 디렉토리
+build/
+cmake-build-*/
+
+# 컴파일러 캐시
+.cache/
+__pycache__/
+*.py[cod]
+*$py.class
+
+# IDE 디렉토리와 파일
+.idea/
+.vscode/
+*.swp
+*.swo
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# 빌드 결과물
+tcpchatserver/build/
+epollechoserver/build/
+
+# 벤치마크 결과
+results/
+*_benchmark_*/
+*.csv
+*.log
+
+# macOS 파일
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows 파일
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# 백업 파일
+*~
+*.bak
+
+# 로그 파일
+*.log 

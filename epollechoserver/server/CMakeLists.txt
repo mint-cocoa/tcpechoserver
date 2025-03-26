@@ -59,18 +59,3 @@ add_executable(epoll_server ${SOURCES} ${HEADERS})
 find_package(Threads REQUIRED)
 target_link_libraries(epoll_server PRIVATE Threads::Threads)
 
-# 설치 규칙
-install(TARGETS epoll_server DESTINATION bin)
-
-# 테스트 빌드 옵션
-option(BUILD_TESTS "Build test programs" OFF)
-if(BUILD_TESTS)
-    add_subdirectory(tests)
-endif()
-
-# 클라이언트 빌드 옵션
-option(BUILD_CLIENT "Build chat client" ON)
-if(BUILD_CLIENT)
-    # 클라이언트 코드를 상대 경로로 참조
-    add_subdirectory(client)
-endif()

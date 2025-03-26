@@ -77,9 +77,47 @@ def find_server_pid(host, port):
     print(f"경고: 포트 {port}를 사용하는 서버 프로세스를 찾을 수 없습니다.")
     return None
 
+def kill_server_process(host, port):
+    """서버 프로세스를 강제로 종료합니다."""
+    server_pid = find_server_pid(host, port)
+    if server_pid:
+        try:
+            print(f"서버 프로세스 종료 중 (PID: {server_pid})...")
+            process = psutil.Process(server_pid)
+            
+            # 먼저 SIGTERM 시도
+            process.terminate()
+            try:
+                process.wait(timeout=5)
+            except psutil.TimeoutExpired:
+                print("SIGTERM으로 종료되지 않아 SIGKILL 시도...")
+                process.kill()
+            
+            # 프로세스가 완전히 종료될 때까지 대기
+            for _ in range(5):
+                if not process.is_running():
+                    print("서버 프로세스가 성공적으로 종료되었습니다.")
+                    return True
+                time.sleep(1)
+            
+            print("서버 프로세스 종료 실패")
+            return False
+        except psutil.NoSuchProcess:
+            print("서버 프로세스가 이미 종료되었습니다.")
+            return True
+        except Exception as e:
+            print(f"서버 프로세스 종료 중 오류 발생: {e}")
+            return False
+    return True
+
 def start_server(server_path, host, port, thread_count=4):
     """지정된 스레드 수로 서버를 시작합니다."""
     print(f"서버 시작 중 (스레드 수: {thread_count})...")
+    
+    # 기존 서버 프로세스 종료
+    if not kill_server_process(host, port):
+        print("기존 서버 프로세스 종료 실패. 서버 시작을 건너뜁니다.")
+        return None
     
     if not os.path.exists(server_path):
         print(f"오류: 서버 경로가 존재하지 않습니다 - {server_path}")
@@ -522,15 +560,8 @@ def run_recursive_benchmark(connections, thread_counts, host, port, server_path,
                                      timestamp, thread_idx + 1)
         
     finally:
-        # 서버 프로세스 종료 확인
-        if server_process and server_process.poll() is None:
-            try:
-                print(f"서버 프로세스 종료 중 (PID: {server_process.pid})...")
-                server_process.terminate()
-                server_process.wait(5)
-            except:
-                print(f"서버 프로세스 강제 종료 (PID: {server_process.pid})...")
-                server_process.kill()
+        # 서버 프로세스 종료
+        kill_server_process(host, port)
 
 def main():
     """벤치마크 실행 메인 함수"""
