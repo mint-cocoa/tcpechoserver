@@ -56,3 +56,10 @@ Desktop.ini
 
 # 로그 파일
 *.log 
+
+Makefile
+
+# 벤치마크 결과
+benchmark_results/
+*.csv
+*.log
